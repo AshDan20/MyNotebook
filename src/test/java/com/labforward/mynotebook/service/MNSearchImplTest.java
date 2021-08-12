@@ -87,7 +87,7 @@ class MNSearchImplTest {
     }
 
     @Test
-    @DisplayName("Test case to check if char is different in middle")
+    @DisplayName("Test case to check if char is different in middle - expected true")
     void isSimilarWordsWithLV1InMiddle() {
         Assert.isTrue(MNSearchImpl.isSimilarWord("1234567890", "1234557890"));
     }

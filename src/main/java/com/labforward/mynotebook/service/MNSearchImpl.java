@@ -61,6 +61,7 @@ public class MNSearchImpl implements MNSearchService {
         if(key == null || searchedWord == null){
             return false;
         }
+        //check if onw word is blank and otehr is just one char
         if(key == "" && searchedWord == ""
                 || key == "" && searchedWord.length() == MNConstants.LEV_DISTANCE
                 || searchedWord == "" && key.length() == MNConstants.LEV_DISTANCE){
