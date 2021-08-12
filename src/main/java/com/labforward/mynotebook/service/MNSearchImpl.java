@@ -56,21 +56,34 @@ public class MNSearchImpl implements MNSearchService {
      */
     public static boolean isSimilarWord(String key, String searchedWord) {
 
-
-        if (null == key || null == searchedWord || (key.length() == 0 && searchedWord.length() > 1)
-                || (searchedWord.length() == 0 && key.length() > 1)) {
+        int differentChars = 0;
+        //if any of the words is null return false
+        if(key == null || searchedWord == null){
             return false;
         }
-
-        if ((key.length() == 0 && searchedWord.length() == 0) ||
-                (key.length() == 0 && searchedWord.length() == 1) ||
-                (searchedWord.length() == 0 && key.length() == 1)) {
+        if(key == "" && searchedWord == ""
+                || key == "" && searchedWord.length() == MNConstants.LEV_DISTANCE
+                || searchedWord == "" && key.length() == MNConstants.LEV_DISTANCE){
             return true;
         }
-
-        //check word similarity w.r.t given Levenshtein distance
-        return searchedWord.equalsIgnoreCase(key.substring(0, key.length() - MNConstants.LEV_DISTANCE))
-                || searchedWord.substring(0, searchedWord.length() - MNConstants.LEV_DISTANCE).equalsIgnoreCase(key)
-                || searchedWord.equalsIgnoreCase(key);
+        if(Math.abs(key.length() - searchedWord.length()) > MNConstants.LEV_DISTANCE){
+            return false;
+        }
+        for(int i = 0; i < key.length(); i++){
+            if(differentChars > 1){
+                return false;
+            }
+            if(!String.valueOf(key.charAt(i)).equalsIgnoreCase(String.valueOf(searchedWord.charAt(i)))){
+                differentChars += 1;
+            }
+            if(i == key.length() - 1 || i == searchedWord.length() - 1){
+                break;
+            }
+        }
+        if(differentChars > 1){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

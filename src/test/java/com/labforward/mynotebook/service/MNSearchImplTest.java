@@ -86,4 +86,21 @@ class MNSearchImplTest {
         Assert.isTrue(!MNSearchImpl.isSimilarWord("123456789", "1234567"));
     }
 
+    @Test
+    @DisplayName("Test case to check if char is different in middle")
+    void isSimilarWordsWithLV1InMiddle() {
+        Assert.isTrue(MNSearchImpl.isSimilarWord("1234567890", "1234557890"));
+    }
+
+    @Test
+    @DisplayName("Test case to check if char is different in middle - mixed case")
+    void isSimilarWordsWithLV1InMiddleMixedCase() {
+        Assert.isTrue(MNSearchImpl.isSimilarWord("AbCdEfGhIjKl", "aDCdEfGhIjKl"));
+    }
+
+    @Test
+    @DisplayName("Test case to check if char is different in middle - mixed case - negative true")
+    void isSimilarWordsWithLV1InMiddleMixedCaseFalseTrue() {
+        Assert.isTrue(!MNSearchImpl.isSimilarWord("AbCdEfGhIjKl", "aZdEfGhIjKl"));
+    }
 }
