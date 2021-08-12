@@ -70,6 +70,11 @@ public class MNSearchImpl implements MNSearchService {
         if(Math.abs(key.length() - searchedWord.length()) > MNConstants.LEV_DISTANCE){
             return false;
         }
+        //if the first or last character is different
+        if(key.toUpperCase().contains(searchedWord.toUpperCase())
+                || searchedWord.toUpperCase().contains(key.toUpperCase()) ){
+            return true;
+        }
         for(int i = 0; i < key.length(); i++){
             if(differentChars > 1){
                 return false;

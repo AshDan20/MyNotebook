@@ -20,7 +20,7 @@ class MNSearchImplTest {
     @Test
     @DisplayName("check if similar words, if missing the char at the start of the word")
     void isLongerSimilarWordTest() {
-        Assert.isTrue(!MNSearchImpl.isSimilarWord("gtu79y8ogbhvasjkdfushoifjfjkfsafasoduifaaergdsfsgfdsfsa",
+        Assert.isTrue(MNSearchImpl.isSimilarWord("gtu79y8ogbhvasjkdfushoifjfjkfsafasoduifaaergdsfsgfdsfsa",
                 "tu79y8ogbhvasjkdfushoifjfjkfsafasoduifaaergdsfsgfdsfsa"));
     }
 
@@ -102,5 +102,11 @@ class MNSearchImplTest {
     @DisplayName("Test case to check if char is different in middle - mixed case - negative true")
     void isSimilarWordsWithLV1InMiddleMixedCaseFalseTrue() {
         Assert.isTrue(!MNSearchImpl.isSimilarWord("AbCdEfGhIjKl", "aZdEfGhIjKl"));
+    }
+
+    @Test
+    @DisplayName("Test case to check if char is different in middle - mixed case with special chars")
+    void isSimilarWordsMixedCaseWithSpecialChar() {
+        Assert.isTrue(MNSearchImpl.isSimilarWord("A$dEfGhIjKl", "a*DEfGhIjKl"));
     }
 }
