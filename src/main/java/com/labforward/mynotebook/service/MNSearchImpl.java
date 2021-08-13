@@ -62,9 +62,9 @@ public class MNSearchImpl implements MNSearchService {
             return false;
         }
         //check if onw word is blank and otehr is just one char
-        if(key == "" && searchedWord == ""
-                || key == "" && searchedWord.length() == MNConstants.LEV_DISTANCE
-                || searchedWord == "" && key.length() == MNConstants.LEV_DISTANCE){
+        if(key.isEmpty() && searchedWord.isEmpty()
+                || key.isEmpty() && searchedWord.length() == MNConstants.LEV_DISTANCE
+                || searchedWord.isEmpty() && key.length() == MNConstants.LEV_DISTANCE){
             return true;
         }
         if(Math.abs(key.length() - searchedWord.length()) > MNConstants.LEV_DISTANCE){
